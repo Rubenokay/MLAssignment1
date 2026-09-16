@@ -27,6 +27,17 @@ print(X)
 print(y)
 print(features)
 
+def split(X, y, size=0.25, state=None):
+    sampleSize = X.shape[0]
+    rand = np.random.RandomState(state)
+    num = rand.permutation(sampleSize)
+
+    testNum = int(round(sampleSize*size))
+    testI = num[:testNum]
+    trainingI = num[testNum]
+
+    return X[trainingI], X[testI], y[trainingI], y[testI]
+
 
 
 
