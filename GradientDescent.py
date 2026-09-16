@@ -18,6 +18,17 @@ duplicate = data.drop_duplicates()
 data = data.reset_index(drop=True)
 print(data.shape)#same
 
+target = "LC50"
+X = data.drop(columns=[target]).to_numpy(float)
+y = data[target].to_numpy(float)
+features = data.drop(columns=[target]).columns.tolist() # all except target
+
+print(X)
+print(y)
+print(features)
+
+
+
 
 #It is coded with only one variable, you will have to use multiple. Line 40 update wb  line 22 wb learning rate alpha pretty simple.
 #Code this algorithm from scratch. Learning rate is the step size and you will have to try various values of the learning grid. LIne 60 fo learning rate.
