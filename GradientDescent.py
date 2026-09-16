@@ -2,6 +2,7 @@
 from __future__ import print_function
 import numpy as np
 import pandas as pd
+from sklearn.preprocessing import StandardScaler
 
 columns = ["CIC0", "SM1_Dz_Z", "GATS1i", "NdsCH", "NdssC", "MLOGP", "LC50"]
 
@@ -34,13 +35,17 @@ def split(X, y, size=0.25, state=None):
 
     testNum = int(round(sampleSize*size))
     testI = num[:testNum]
-    trainingI = num[testNum]
+    trainingI = num[testNum:]
 
     return X[trainingI], X[testI], y[trainingI], y[testI]
 
+trainX, testX, trainY, testY = split(X, y, size=0.25, state=1)
+scale = StandardScaler()
+trainXScaled = scale.fit_transform(trainX)
+testXScaled = scale.transform(testX)
 
-
-
+print(trainXScaled.shape)
+print(testXScaled.shape)
 #It is coded with only one variable, you will have to use multiple. Line 40 update wb  line 22 wb learning rate alpha pretty simple.
 #Code this algorithm from scratch. Learning rate is the step size and you will have to try various values of the learning grid. LIne 60 fo learning rate.
 #TODO source
