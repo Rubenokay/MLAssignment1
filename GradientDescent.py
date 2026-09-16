@@ -5,11 +5,19 @@ import pandas as pd
 
 columns = ["CIC0", "SM1_Dz_Z", "GATS1i", "NdsCH", "NdssC", "MLOGP", "LC50"]
 
-dataset = pd.read_csv("data.csv", sep=";", header=None, names=columns)
+dataset = "https://raw.githubusercontent.com/Rubenokay/MLAssignment1/master/data.csv"
+data = pd.read_csv(dataset, sep=";", header=None, names=columns)
 
-print(dataset.shape)
-print(list(dataset.columns))
-print(dataset.isnull().sum())
+print(data.shape)
+print(list(data.columns))
+print(data.isnull().sum())
+
+nulls = data.dropna()
+duplicate = data.drop_duplicates()
+
+data = data.reset_index(drop=True)
+print(data.shape)#same
+
 
 #It is coded with only one variable, you will have to use multiple. Line 40 update wb  line 22 wb learning rate alpha pretty simple.
 #Code this algorithm from scratch. Learning rate is the step size and you will have to try various values of the learning grid. LIne 60 fo learning rate.
