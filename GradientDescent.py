@@ -13,8 +13,8 @@ print(data.shape)
 print(list(data.columns))
 print(data.isnull().sum())
 
-nulls = data.dropna()
-duplicate = data.drop_duplicates()
+data = data.dropna()
+data = data.drop_duplicates()
 
 data = data.reset_index(drop=True)
 print(data.shape)#same
@@ -46,6 +46,28 @@ testXScaled = scale.transform(testX)
 
 print(trainXScaled.shape)
 print(testXScaled.shape)
+
+def update_w_and_b(X, y, w, b, alpha):
+    rows = X.shape[0]
+    yHat = np.dot(X, w) + b
+    error = y-yHat
+
+    dr_dw = 0.0
+    dr_db = 0.0
+
+    dr_dw = -2*np.dot(X.T, error)
+    dr_db = -2*np.sum(error)
+
+    dr_dw = dr_dw/rows
+    dr_db = dr_db/rows
+
+    w = w-alpha*dr_dw
+    b = b-alpha*dr_db
+
+    return w,b
+
+
+
 #It is coded with only one variable, you will have to use multiple. Line 40 update wb  line 22 wb learning rate alpha pretty simple.
 #Code this algorithm from scratch. Learning rate is the step size and you will have to try various values of the learning grid. LIne 60 fo learning rate.
 #TODO source
@@ -64,9 +86,9 @@ print(testXScaled.shape)
 #     fig1.savefig('../../Illustrations/gradient_descent-1.pdf', format='pdf', dpi=1000, bbox_inches = 'tight', pad_inches = 0)
 #     fig1.savefig('../../Illustrations/gradient_descent-1.png', dpi=1000, bbox_inches = 'tight', pad_inches = 0)
 
-# def update_w_and_b(spendings, sales, w, b, alpha):
-#     dr_dw = 0.0
-#     dr_db = 0.0
+
+
+
 #     N = len(spendings)
 
 #     for i in range(N):
