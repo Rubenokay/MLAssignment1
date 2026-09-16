@@ -66,6 +66,10 @@ def update_w_and_b(X, y, w, b, alpha):
 
     return w,b
 
+def loss(X, y, w, b):
+    yHat = np.dot(X, w) + b
+
+    return np.mean((y-yHat) ** 2)
 
 
 #It is coded with only one variable, you will have to use multiple. Line 40 update wb  line 22 wb learning rate alpha pretty simple.
@@ -126,7 +130,6 @@ def update_w_and_b(X, y, w, b, alpha):
 #             image_counter += 1
 #     return w, b
 
-# def loss(spendings, sales, w, b):
 #     N = len(spendings)
 #     total_error = 0.0
 #     for i in range(N):
